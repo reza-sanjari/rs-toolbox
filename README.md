@@ -18,6 +18,8 @@ Personal Claude plugin marketplace with reusable skills (and later hooks and sub
 | `/rs:brief`      | Automatically or by command   | Whole session | Short, focused answers in simple sentences. Say "stop brief" or "normal mode" to turn it off. |
 | `/rs:tldr`       | By command only               | One answer   | A few sentences at most, nothing extra.                        |
 | `/rs:detailed`   | By command only               | One answer   | A complete explanation in simple sentences, without repetition. |
+| `/rs:grill`      | Automatically or by command   | Whole session | Asks clarifying questions in small batches, flags contradictions, skips trivial points, and confirms a summary before starting. Say "stop grill" or "normal mode" to turn it off. |
+| `/rs:grill-full` | By command only               | Whole session | Like `grill`, but asks about every open point and picks no defaults. |
 
 `/rs:tldr` and `/rs:detailed` accept a question after the command. Without one, they apply to the next message.
 
