@@ -2,7 +2,7 @@
 name: tldr
 description: >
   One very short answer: a few sentences at most, nothing extra. Applies to the
-  next answer only. Invoke only with /general:tldr.
+  next answer only. Invoke only with /rs:tldr.
 disable-model-invocation: true
 ---
 

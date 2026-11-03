@@ -3,13 +3,13 @@
   "owner": { "name": "reza-sanjari" },
   "plugins": [
     {
-      "name": "general",
-      "source": "./plugins/general",
-      "description": "Everyday skills for general use"
+      "name": "rs",
+      "source": "./plugins/rs",
+      "description": "Everyday skills"
     },
     {
-      "name": "coding",
-      "source": "./plugins/coding",
+      "name": "rs-dev",
+      "source": "./plugins/rs-dev",
       "description": "Development skills"
     }
   ]

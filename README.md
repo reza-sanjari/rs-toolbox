@@ -2,19 +2,31 @@
 
 Personal Claude plugin marketplace with reusable skills (and later hooks and sub-agents). It works in **Claude Code** and in **claude.ai** (web and Desktop Chat tab).
 
-| Plugin    | Contents                     | Who installs it       |
-|-----------|------------------------------|-----------------------|
-| `general` | Everyday skills              | Everyone (family too) |
-| `coding`  | Development skills           | Reza only             |
+| Plugin   | Contents           | When to install        |
+|----------|--------------------|------------------------|
+| `rs`     | Everyday skills    | Always                 |
+| `rs-dev` | Development skills | Only for development   |
 
 > In claude.ai web chat and the Desktop Chat tab, only **skills** are supported. Hooks and sub-agents run only in Claude Code and Cowork.
+
+## Skills
+
+### `rs`
+
+| Skill            | Starts                        | Lasts        | What it does                                                   |
+|------------------|-------------------------------|--------------|----------------------------------------------------------------|
+| `/rs:brief`      | Automatically or by command   | Whole session | Short, focused answers in simple sentences. Say "stop brief" or "normal mode" to turn it off. |
+| `/rs:tldr`       | By command only               | One answer   | A few sentences at most, nothing extra.                        |
+| `/rs:detailed`   | By command only               | One answer   | A complete explanation in simple sentences, without repetition. |
+
+`/rs:tldr` and `/rs:detailed` accept a question after the command. Without one, they apply to the next message.
 
 ## Modes
 
 A "mode" is just the set of plugins you install:
 
-- **General mode:** install `general` only.
-- **Full mode:** install `general` **and** `coding`.
+- **Everyday mode:** install `rs` only.
+- **Full mode:** install `rs` **and** `rs-dev`.
 
 There is no separate "full" plugin, so no skill ever shows up twice.
 
@@ -22,8 +34,8 @@ There is no separate "full" plugin, so no skill ever shows up twice.
 
 ```
 /plugin marketplace add reza-sanjari/rs-toolbox
-/plugin install general@rs-toolbox
-/plugin install coding@rs-toolbox     # only for Reza
+/plugin install rs@rs-toolbox
+/plugin install rs-dev@rs-toolbox     # optional, for development
 ```
 
 ### Switching modes in Claude Code
@@ -33,14 +45,14 @@ Set the mode in `~/.claude/settings.json`. To set it for one project only, use t
 ```json
 {
   "enabledPlugins": {
-    "general@rs-toolbox": true,
-    "coding@rs-toolbox": true
+    "rs@rs-toolbox": true,
+    "rs-dev@rs-toolbox": true
   }
 }
 ```
 
 - Full mode: both `true`.
-- General mode: set `coding@rs-toolbox` to `false`.
+- Everyday mode: set `rs-dev@rs-toolbox` to `false`.
 
 ### Updates in Claude Code
 
@@ -48,20 +60,20 @@ Set the mode in `~/.claude/settings.json`. To set it for one project only, use t
 - **Manual update:**
   ```
   /plugin marketplace update rs-toolbox
-  /plugin update general@rs-toolbox
-  /plugin update coding@rs-toolbox
+  /plugin update rs@rs-toolbox
+  /plugin update rs-dev@rs-toolbox
   ```
 - **Test locally without installing:**
   ```
-  claude --plugin-dir ./plugins/general
+  claude --plugin-dir ./plugins/rs
   ```
 
 ## Install: claude.ai (web / Desktop chat)
 
 1. Go to **Customize → Plugins → Personal plugins → "+" → "Add marketplace" → "Add from a repository"** and enter `reza-sanjari/rs-toolbox`.
-2. Install `general` (and `coding` for Reza only).
+2. Install `rs` (and `rs-dev` if needed).
 3. For automatic updates, open the marketplace's menu in the **Personal** tab and turn on **"Sync automatically"**. Each user has to do this in their own account.
-4. Each user, family included, needs a paid plan (Pro, Max, Team or Enterprise).
+4. Each user needs a paid plan (Pro, Max, Team or Enterprise).
 
 To switch modes in claude.ai, install, uninstall or disable plugins under **Customize → Plugins**. There is no text toggle.
 
@@ -72,12 +84,12 @@ rs-toolbox/
 ├── .claude-plugin/
 │   └── marketplace.json
 ├── plugins/
-│   ├── general/
+│   ├── rs/
 │   │   ├── .claude-plugin/plugin.json
 │   │   ├── skills/
 │   │   ├── hooks/      (reserved)
 │   │   └── agents/     (reserved)
-│   └── coding/
+│   └── rs-dev/
 │       ├── .claude-plugin/plugin.json
 │       ├── skills/
 │       ├── hooks/      (reserved)
@@ -107,7 +119,7 @@ description: Do X. Use whenever the user asks for X, mentions Y, or wants Z.
 ...
 ```
 
-- Skills are namespaced by plugin. A skill `review` in `coding` is invoked as `/coding:review`.
+- Skills are namespaced by plugin. A skill `review` in `rs-dev` is invoked as `/rs-dev:review`.
 - Claude decides whether to invoke a skill automatically based on its **`description`**. Write it as "when to use this", with concrete triggers, phrasings and situations.
 - Several narrow skills trigger more reliably than one broad skill.
 - For skills that should only run when called by hand (deploy, release, and similar), add `disable-model-invocation: true` to the frontmatter.

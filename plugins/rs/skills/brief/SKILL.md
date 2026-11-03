@@ -18,7 +18,7 @@ Applies to every answer for the rest of the conversation. If you are unsure whet
 
 It ends when the user says "stop brief", "normal mode", or clearly asks for long answers again. Confirm in one short sentence.
 
-A one-time request for more detail (for example `/general:detailed`) does not end brief mode. Answer that one request in full, then go back to brief answers.
+A one-time request for more detail (for example `/rs:detailed`) does not end brief mode. Answer that one request in full, then go back to brief answers.
 
 ## Rules
 

@@ -2,7 +2,7 @@
 name: detailed
 description: >
   One complete, full explanation of a topic, in simple and clear sentences.
-  Applies to the next answer only. Invoke only with /general:detailed.
+  Applies to the next answer only. Invoke only with /rs:detailed.
 disable-model-invocation: true
 ---
 
