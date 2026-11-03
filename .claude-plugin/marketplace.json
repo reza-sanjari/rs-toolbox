@@ -1,0 +1,16 @@
+{
+  "name": "rs-toolbox",
+  "owner": { "name": "reza-sanjari" },
+  "plugins": [
+    {
+      "name": "general",
+      "source": "./plugins/general",
+      "description": "Everyday skills for general use"
+    },
+    {
+      "name": "coding",
+      "source": "./plugins/coding",
+      "description": "Development skills"
+    }
+  ]
+}
